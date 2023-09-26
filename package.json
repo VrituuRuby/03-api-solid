@@ -1,0 +1,29 @@
+{
+	"name": "03-api-solid",
+	"version": "1.0.0",
+	"description": "GymPass style app",
+	"main": "index.js",
+	"scripts": {
+		"lint": "eslint src --fix",
+		"start": "node dist/server.js",
+		"start:dev": "tsx watch src/server.ts",
+		"build": "tsup src"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"dotenv": "16.3.1",
+		"fastify": "4.23.2",
+		"zod": "3.22.2"
+	},
+	"devDependencies": {
+		"@types/node": "20.7.0",
+		"@typescript-eslint/eslint-plugin": "6.7.3",
+		"@typescript-eslint/parser": "6.7.3",
+		"eslint": "8.50.0",
+		"tsup": "7.2.0",
+		"tsx": "3.13.0",
+		"typescript": "5.2.2"
+	}
+}
