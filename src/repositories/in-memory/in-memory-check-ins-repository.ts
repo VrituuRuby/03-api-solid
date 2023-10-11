@@ -4,6 +4,10 @@ import { ICheckInsRepository } from '../ICheckInsRepository'
 
 export class InMemoryCheckInsRepository implements ICheckInsRepository {
   items: CheckIn[] = []
+  async countByUserId(user_id: string): Promise<number> {
+    return this.items.filter((checkIn) => checkIn.user_id === user_id).length
+  }
+
   async findByUserOnDate(user_id: string, date: Date) {
     const hasCheckInOnDate = this.items.find(
       (checkIn) =>
@@ -16,6 +20,12 @@ export class InMemoryCheckInsRepository implements ICheckInsRepository {
     }
 
     return null
+  }
+
+  async findManyByUserId(user_id: string, page: number) {
+    return this.items
+      .filter((item) => item.user_id === user_id)
+      .slice((page - 1) * 20, page * 20)
   }
 
   async create(data: Prisma.CheckInUncheckedCreateInput) {
