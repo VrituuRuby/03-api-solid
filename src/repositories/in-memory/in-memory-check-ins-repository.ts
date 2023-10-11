@@ -8,6 +8,16 @@ export class InMemoryCheckInsRepository implements ICheckInsRepository {
     return this.items.filter((checkIn) => checkIn.user_id === user_id).length
   }
 
+  async save(checkIn: CheckIn) {
+    const checkInIndex = this.items.findIndex((item) => item.id === checkIn.id)
+
+    if (checkInIndex >= 0) {
+      this.items[checkInIndex] = checkIn
+    }
+
+    return checkIn
+  }
+
   async findByUserOnDate(user_id: string, date: Date) {
     const hasCheckInOnDate = this.items.find(
       (checkIn) =>
@@ -20,6 +30,14 @@ export class InMemoryCheckInsRepository implements ICheckInsRepository {
     }
 
     return null
+  }
+
+  async findById(id: string) {
+    const checkIn = this.items.find((item) => item.id === id)
+    if (!checkIn) {
+      return null
+    }
+    return checkIn
   }
 
   async findManyByUserId(user_id: string, page: number) {
