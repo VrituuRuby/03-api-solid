@@ -1,6 +1,5 @@
 import { IUsersRepository } from '@/repositories/IUsersRepository'
 import { beforeEach, describe, expect, it } from 'vitest'
-import { RegisterService } from './register'
 import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository'
 import { GetUserProfileService } from './get-user-profile'
 import { ResourceNotFoundError } from './errors/resource-not-found-error'
@@ -28,7 +27,7 @@ describe('Get User Profile Service', async () => {
 
   it('Should not be able to get an user profile with non-existing id', async () => {
     expect(async () => {
-      const { user } = await service.execute({ userId: 'non-existing-id' })
+      await service.execute({ userId: 'non-existing-id' })
     }).rejects.toBeInstanceOf(ResourceNotFoundError)
   })
 })
