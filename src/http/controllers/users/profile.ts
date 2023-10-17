@@ -2,8 +2,6 @@ import { makeGetUserProfileService } from '@/services/factories/make-get-user-pr
 import { FastifyReply, FastifyRequest } from 'fastify'
 
 export async function profile(request: FastifyRequest, reply: FastifyReply) {
-  console.log(request.user.sub)
-
   const getUserProfile = makeGetUserProfileService()
 
   const { user } = await getUserProfile.execute({ userId: request.user.sub })
