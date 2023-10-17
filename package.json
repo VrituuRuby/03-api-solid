@@ -21,6 +21,7 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
+		"@fastify/cookie": "9.1.0",
 		"@fastify/jwt": "7.2.2",
 		"@prisma/client": "5.3.1",
 		"bcrypt": "5.1.1",

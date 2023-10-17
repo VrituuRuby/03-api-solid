@@ -37,12 +37,12 @@ describe('Fetch Nearby Gyms Controller', () => {
       })
 
     const response = await request(app.server)
-      .get('/gyms/search')
-      .send({
-        userLatitude: -25.4224996,
-        userLongitude: -49.334863,
-      })
+      .get('/gyms/nearby')
       .set('Authorization', `Bearer ${token}`)
+      .query({
+        latitude: -25.4224996,
+        longitude: -49.334863,
+      })
 
     expect(response.statusCode).toEqual(200)
     expect(response.body.gyms).toHaveLength(1)
